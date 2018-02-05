@@ -38,10 +38,9 @@ const config = {
   },
   resolve: {
     alias: {
+      '@packageJSON': path.resolve(__dirname, './package.json'),
       '@': path.resolve(__dirname, './src'),
       '@config': path.resolve(__dirname, './src/config'),
-      '@actions': path.resolve(__dirname, './src/actions'),
-      '@questions': path.resolve(__dirname, './src/questions'),
       '@store': path.resolve(__dirname, './src/store')
     },
     extensions: ['*', '.js', '.json']

@@ -1,5 +1,8 @@
+let packageJSON = require('@packageJSON')
+
 const config = {
-  appName: 'max'
+  appName: 'max',
+  appVersion: packageJSON.version
 }
 
 export {

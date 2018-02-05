@@ -1,11 +1,12 @@
 import { default as program } from 'commander'
 import { prompt } from 'inquirer'
 
+import { config } from '@config'
 import { store } from '@store'
 
 // info
 program
-  .version('0.0.6')
+  .version(config.appVersion)
   .description('A simple backup utility for macOS')
 
 // init

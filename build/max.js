@@ -61,35 +61,56 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(1);
+"use strict";
 
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var packageJSON = __webpack_require__(5);
+
+var config = {
+  appName: 'max',
+  appVersion: packageJSON.version
+};
+
+exports.config = config;
 
 /***/ }),
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
+module.exports = __webpack_require__(2);
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 
 
-var _commander = __webpack_require__(2);
+var _commander = __webpack_require__(3);
 
 var _commander2 = _interopRequireDefault(_commander);
 
-var _inquirer = __webpack_require__(3);
+var _inquirer = __webpack_require__(4);
 
-var _store = __webpack_require__(4);
+var _config = __webpack_require__(0);
+
+var _store = __webpack_require__(6);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // info
-_commander2.default.version('0.0.6').description('A simple backup utility for macOS');
+_commander2.default.version(_config.config.appVersion).description('A simple backup utility for macOS');
 
 // init
 _commander2.default.command('init').description('Initialize max').action(function () {
@@ -221,19 +242,25 @@ var nonEmptyCheck = function nonEmptyCheck(path) {
 };
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports) {
 
 module.exports = require("commander");
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports) {
 
 module.exports = require("inquirer");
 
 /***/ }),
-/* 4 */
+/* 5 */
+/***/ (function(module, exports) {
+
+module.exports = {"name":"@jjcosgrove/max","version":"0.0.6","description":"A simple backup utility for macOS","author":"Jonathan James Cosgrove","license":"MIT","repository":{"type":"git","url":"https://github.com/jjcosgrove/max.git"},"scripts":{"build":"webpack --config ./webpack.config.babel.js","prepack":"npm install && npm run build"},"bin":{"max":"./build/max.js"},"preferGlobal":true,"engines":{"node":">=8.0"},"babel":{"presets":["env"]},"dependencies":{"commander":"^2.13.0","fs-extra":"5.0.0","inquirer":"^5.0.1","js-yaml":"^3.10.0","log-symbols":"^2.2.0","mkdirp":"^0.5.1","moment":"^2.20.1","overwrite":"^1.0.3"},"devDependencies":{"babel-cli":"^6.26.0","babel-core":"^6.26.0","babel-loader":"^7.1.2","babel-preset-env":"^1.6.1","eslint":"^4.16.0","eslint-config-standard":"^11.0.0-beta.0","eslint-loader":"^1.9.0","eslint-plugin-import":"^2.8.0","eslint-plugin-node":"^5.2.1","eslint-plugin-promise":"^3.6.0","eslint-plugin-standard":"^3.0.1","watch-ignore-webpack-plugin":"^1.0.0","webpack":"^3.10.0","webpack-node-externals":"^1.6.0"}}
+
+/***/ }),
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -246,39 +273,39 @@ exports.store = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _os = __webpack_require__(5);
+var _os = __webpack_require__(7);
 
 var _os2 = _interopRequireDefault(_os);
 
-var _path = __webpack_require__(6);
+var _path = __webpack_require__(8);
 
 var _path2 = _interopRequireDefault(_path);
 
-var _fs = __webpack_require__(7);
+var _fs = __webpack_require__(9);
 
 var _fs2 = _interopRequireDefault(_fs);
 
-var _jsYaml = __webpack_require__(8);
+var _jsYaml = __webpack_require__(10);
 
 var _jsYaml2 = _interopRequireDefault(_jsYaml);
 
-var _mkdirp = __webpack_require__(9);
+var _mkdirp = __webpack_require__(11);
 
 var _mkdirp2 = _interopRequireDefault(_mkdirp);
 
-var _logSymbols = __webpack_require__(10);
+var _logSymbols = __webpack_require__(12);
 
 var _logSymbols2 = _interopRequireDefault(_logSymbols);
 
-var _overwrite = __webpack_require__(11);
+var _overwrite = __webpack_require__(13);
 
 var _overwrite2 = _interopRequireDefault(_overwrite);
 
-var _moment = __webpack_require__(12);
+var _moment = __webpack_require__(14);
 
 var _moment2 = _interopRequireDefault(_moment);
 
-var _config = __webpack_require__(13);
+var _config = __webpack_require__(0);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -651,68 +678,52 @@ var Store = function () {
 var store = exports.store = new Store();
 
 /***/ }),
-/* 5 */
+/* 7 */
 /***/ (function(module, exports) {
 
 module.exports = require("os");
 
 /***/ }),
-/* 6 */
+/* 8 */
 /***/ (function(module, exports) {
 
 module.exports = require("path");
 
 /***/ }),
-/* 7 */
+/* 9 */
 /***/ (function(module, exports) {
 
 module.exports = require("fs");
 
 /***/ }),
-/* 8 */
+/* 10 */
 /***/ (function(module, exports) {
 
 module.exports = require("js-yaml");
 
 /***/ }),
-/* 9 */
+/* 11 */
 /***/ (function(module, exports) {
 
 module.exports = require("mkdirp");
 
 /***/ }),
-/* 10 */
+/* 12 */
 /***/ (function(module, exports) {
 
 module.exports = require("log-symbols");
 
 /***/ }),
-/* 11 */
+/* 13 */
 /***/ (function(module, exports) {
 
 module.exports = require("overwrite");
 
 /***/ }),
-/* 12 */
+/* 14 */
 /***/ (function(module, exports) {
 
 module.exports = require("moment");
-
-/***/ }),
-/* 13 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var config = {
-  appName: 'max'
-};
-
-exports.config = config;
 
 /***/ })
 /******/ ]);
