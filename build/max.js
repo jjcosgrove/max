@@ -89,7 +89,7 @@ var _store = __webpack_require__(4);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // info
-_commander2.default.version('0.0.5').description('A simple backup utility for macOS');
+_commander2.default.version('0.0.6').description('A simple backup utility for macOS');
 
 // init
 _commander2.default.command('init').description('Initialize max').action(function () {
@@ -567,7 +567,7 @@ var Store = function () {
     value: function copy(source, destination) {
       try {
         fse.copySync(source, _path2.default.join(destination, source), {
-          overwrite: false,
+          overwrite: true,
           preserveTimestamps: true
         });
       } catch (error) {

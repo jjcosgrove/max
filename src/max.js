@@ -5,7 +5,7 @@ import { store } from '@store'
 
 // info
 program
-  .version('0.0.1')
+  .version('0.0.6')
   .description('A simple backup utility for macOS')
 
 // init
