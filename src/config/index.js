@@ -1,4 +1,4 @@
-let packageJSON = require('@packageJSON')
+const packageJSON = require('@packageJSON')
 
 const config = {
   appName: 'max',

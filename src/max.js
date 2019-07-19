@@ -45,7 +45,7 @@ program
   .command('add')
   .description('Add a new backup entry to max')
   .action(() => {
-    let combinedResponses = {
+    const combinedResponses = {
       name: '',
       paths: []
     }

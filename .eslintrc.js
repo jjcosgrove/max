@@ -3,6 +3,7 @@ module.exports = {
     'standard'
   ],
   rules: {
-    'prefer-promise-reject-errors': 0
+    'prefer-promise-reject-errors': 0,
+    'import/no-named-default': 0
   }
 }

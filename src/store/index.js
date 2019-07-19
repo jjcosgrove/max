@@ -12,7 +12,7 @@ import { config } from '@config'
 // patch copySync function of fs-extra package
 const fse = overwrite('fs-extra', {
   'lib/copy-sync/copy-sync.js': contents => {
-    let lines = contents.split('\n')
+    const lines = contents.split('\n')
     lines.splice(201, 1,
       `return src !== dest &&
         dest.indexOf(src) === 0 &&
@@ -35,7 +35,7 @@ class Store {
     if (this.alreadyInitialized()) {
       console.log(ls.info, `${config.appName} is already initialized`)
     } else {
-      let absolutePath = fsPath.join(this.homeDir, path)
+      const absolutePath = fsPath.join(this.homeDir, path)
       this.createConfigsAndStore(absolutePath, snapshots, timestamp)
       console.log(ls.success, 'Successfully initialized')
       console.log(ls.success, 'Backing up to: ', absolutePath)
@@ -77,7 +77,7 @@ class Store {
       return
     }
 
-    let configuration = this.readConfig()
+    const configuration = this.readConfig()
 
     // if not present in active/inactive then add
     if (
@@ -102,14 +102,14 @@ class Store {
       return
     }
 
-    let configuration = this.readConfig()
+    const configuration = this.readConfig()
 
-    let preLength = configuration.active.length + configuration.inactive.length
+    const preLength = configuration.active.length + configuration.inactive.length
 
     configuration.active = configuration.active.filter((i) => i !== name)
     configuration.inactive = configuration.inactive.filter((i) => i !== name)
 
-    let postLength = configuration.active.length + configuration.inactive.length
+    const postLength = configuration.active.length + configuration.inactive.length
 
     if (preLength === postLength) {
       console.log(ls.info, `${name} does not appear to be present`)
@@ -125,7 +125,7 @@ class Store {
       return
     }
 
-    let configuration = this.readConfig()
+    const configuration = this.readConfig()
 
     if (configuration.active.includes(name)) {
       configuration.active = configuration.active.filter((i) => i !== name)
@@ -146,7 +146,7 @@ class Store {
       return
     }
 
-    let configuration = this.readConfig()
+    const configuration = this.readConfig()
 
     if (configuration.inactive.includes(name)) {
       configuration.inactive = configuration.active.filter((i) => i !== name)
@@ -167,14 +167,14 @@ class Store {
       return
     }
 
-    let configuration = this.readConfig()
+    const configuration = this.readConfig()
 
     if (configuration.active.length) {
       console.log(ls.success, 'Active')
 
       configuration.active.forEach((entry) => {
         if (verbose) {
-          let thisConfig = this.readConfigs(entry)
+          const thisConfig = this.readConfigs(entry)
 
           thisConfig.paths.forEach((path) => {
             console.log(entry + ' -> ' + path)
@@ -192,7 +192,7 @@ class Store {
 
       configuration.inactive.forEach((entry) => {
         if (verbose) {
-          let thisConfig = this.readConfigs(entry)
+          const thisConfig = this.readConfigs(entry)
 
           thisConfig.paths.forEach((path) => {
             console.log(entry + ' -> ' + path)
@@ -213,16 +213,16 @@ class Store {
       return
     }
 
-    let configuration = this.readConfig()
-    let activeEntries = configuration.active
+    const configuration = this.readConfig()
+    const activeEntries = configuration.active
 
     if (activeEntries.length) {
       console.log(ls.info, `Backing up ${activeEntries.join(', ')}`)
     }
 
-    let paths = []
+    const paths = []
     activeEntries.forEach((entry) => {
-      let thisConfig = this.readConfigs(entry)
+      const thisConfig = this.readConfigs(entry)
 
       thisConfig.paths.forEach((path) => {
         paths.push(path)
@@ -308,4 +308,4 @@ class Store {
   }
 }
 
-export let store = new Store()
+export const store = new Store()

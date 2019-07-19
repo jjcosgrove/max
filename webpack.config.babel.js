@@ -6,9 +6,10 @@ import webpack from 'webpack'
 
 const config = {
   target: 'node',
+  mode: process.env.NODE_ENV,
   externals: [nodeExternals()],
   entry: {
-    'command': [
+    command: [
       './src/max'
     ]
   },
@@ -31,7 +32,7 @@ const config = {
         loader: 'babel-loader',
         exclude: /node_modules/,
         query: {
-          presets: ['env']
+          presets: ['@babel/preset-env']
         }
       }
     ]
